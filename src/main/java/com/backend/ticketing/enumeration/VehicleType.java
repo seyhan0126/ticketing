@@ -1,4 +1,4 @@
-package com.backend.ticketing.enums;
+package com.backend.ticketing.enumeration;
 
 public enum VehicleType {
     BUS,

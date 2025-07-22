@@ -1,6 +1,6 @@
 package com.backend.ticketing.dto;
 
-import com.backend.ticketing.enums.VehicleType;
+import com.backend.ticketing.enumeration.VehicleType;
 
 public class VehicleDTO {
 

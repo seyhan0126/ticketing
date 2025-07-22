@@ -1,6 +1,6 @@
 package com.backend.ticketing.model;
 
-import com.backend.ticketing.enums.VehicleType;
+import com.backend.ticketing.enumeration.VehicleType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
