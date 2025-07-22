@@ -1,0 +1,93 @@
+openapi: 3.0.1
+info:
+  title: Unicard Ticketing API
+  description: REST API for managing public transport ticketing
+  version: "1.0.0"
+paths:
+  /vehicles:
+    post:
+      summary: Register a new vehicle
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vehicle'
+      responses:
+        "201":
+          description: Vehicle created
+    get:
+      summary: List all registered vehicles
+      responses:
+        "200":
+          description: List of vehicles
+
+  /tickets:
+    post:
+      summary: Issue a new ticket
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ticket'
+      responses:
+        "201":
+          description: Ticket issued
+  /tickets/{code}/validate:
+    post:
+      summary: Validate a ticket by code
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Ticket validated
+  /tickets/vehicle/{reg}:
+    get:
+      summary: List tickets for a given vehicle
+      parameters:
+        - name: reg
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of tickets
+
+  /monitor/health:
+    get:
+      summary: Health check
+      responses:
+        "200":
+          description: OK
+  /monitor/metrics:
+    get:
+      summary: Get system metrics
+      responses:
+        "200":
+          description: Metrics data
+
+components:
+  schemas:
+    Vehicle:
+      type: object
+      properties:
+        registrationNumber:
+          type: string
+        type:
+          type: string
+        passengerCapacity:
+          type: integer
+    Ticket:
+      type: object
+      properties:
+        passengerName:
+          type: string
+        vehicle:
+          type: object
+          properties:
+            registrationNumber:
+              type: string
